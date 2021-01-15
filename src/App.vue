@@ -1,20 +1,29 @@
 <template lang="html">
   <div>
-    <h1>Species</h1>
+    <h1>Films</h1>
+      <div>
+        <films-list :films="films"></films-list>
+      </div>
   </div>
 </template>
 
 <script>
+
+import FilmsList from './components/FilmsList.vue'
+
 export default {
   data() {
     return {
-      species: []
+      films: []
     }
   },
   mounted() {
-    fetch('https://ghibliapi.herokuapp.com/species')
+    fetch('https://ghibliapi.herokuapp.com/films')
     .then( res => res.json())
-    .then(species => this.species = species);
+    .then(films => this.films = films);
+  },
+  components: {
+    "films-list": FilmsList
   }
 }
 </script>
