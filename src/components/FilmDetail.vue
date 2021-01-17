@@ -61,5 +61,7 @@ export default {
 </script>
 
 <style>
-
+#detailWrapper {
+  max-width: 500px;
+}
 </style>

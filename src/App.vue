@@ -1,14 +1,16 @@
 <template lang="html">
   <div>
     <h1>Films</h1>
-      <div>
-        <film-filter-form :films="films"/>
-        <ul>
+    <div id="body">
+      <film-filter-form :films="films"/>
+        <ul class="favouriteFilms">
           <h2 v-on:submit.prevent v-if="favouriteFilms[0]">Favourite films</h2>
-            <li v-for="favouriteFilm in favouriteFilms">{{ favouriteFilm.title }}</li>
+          <li v-for="favouriteFilm in favouriteFilms">{{ favouriteFilm.title }}
+            <button type="submit" v-on:click="removeFromFavourites">Remove</button>
+          </li>
         </ul>
-        <film-detail/>
-      </div>
+      <film-detail/>
+    </div>
   </div>
 </template>
 
@@ -41,10 +43,28 @@ export default {
       if (this.favouriteFilms.indexOf(film) == -1)
       this.favouriteFilms.push(film)
     })
+  },
+  methods: {
+    removeFromFavourites: function (film) {
+      const index = this.favouriteFilms.indexOf(film)
+      this.favouriteFilms.splice(index,1);
+    }
   }
 }
+// Park.prototype.remove = function (dinosaur) {
+//   const index = this.dinosaurs.indexOf(dinosaur);
+//   this.dinosaurs.splice(index, 1);
+// }
 </script>
 
 <style lang="css" scoped>
+#body {
+  display: grid;
+  grid-template-rows: 80px auto;
+  grid-template-columns: auto auto;
+};
 
+.favourites {
+}
 </style>
+
