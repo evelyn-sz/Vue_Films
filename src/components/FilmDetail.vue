@@ -1,7 +1,10 @@
 <template lang="html">
     <div v-if="film" id="filmDetail">
         <div id="detailWrapper">
+          <div>
             <h2>{{ film.title }}</h2>
+            <button type="submit" id="button" v-on:click="addToFavourites">Add to favourite films</button>
+          </div>
             <div id="flexWrapper">
                 <div id="left">
                     <p><span>Director: </span>{{ film.director }}</p>
@@ -38,15 +41,21 @@
 import { eventBus } from '../main.js';
 export default {
     name: 'film-detail',
-    data() {
-        return {
-            film: null
-        }
-    },
+    props: ['film'],
+    // data() {
+    //     return {
+    //         film: null
+    //     }
+    // },
     mounted() {
         eventBus.$on('film-selected', (film) => {
             this.film = film
         })
+    },
+    methods: {
+      addToFavourites: function() {
+        eventBus.$emit('film-favourite', this.film)
+      }
     }
 }
 </script>

@@ -23,7 +23,7 @@ export default {
   methods: {
     searchForFilm() {
       let foundFilm = this.films.find((film) => {
-        return film.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1
+        return film.title.toLowerCase().indexOf(this.search.toLowerCase()) > -1
       })
       this.selectedFilm = foundFilm
 
