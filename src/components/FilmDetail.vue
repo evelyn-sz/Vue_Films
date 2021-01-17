@@ -12,13 +12,13 @@
                     <p><span>Release date: </span>{{ film.release_date }}</p>
 
                     <p><span>Characters: </span></p>
-                        <ul v-for="character in film.people">
-                            <li>{{ character }} </li>
+                        <ul :characters="characters" v-for="character in film.people">
+                            <li>{{ character.name }} </li>
                         </ul>
 
                     <p><span>Species: </span></p>
                         <ul v-for="specie in film.species">
-                            <li>{{ specie }} </li>
+                            <li>{{ specie.name }} </li>
                         </ul>
 
                     <p><span>Locations: </span></p>
@@ -41,12 +41,14 @@
 import { eventBus } from '../main.js';
 export default {
     name: 'film-detail',
-    props: ['film'],
-    // data() {
-    //     return {
-    //         film: null
-    //     }
-    // },
+    // props: ['film'],
+    data() {
+        return {
+            film: null,
+            characters: [],
+            species: []
+        }
+    },
     mounted() {
         eventBus.$on('film-selected', (film) => {
             this.film = film
@@ -60,7 +62,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="css" scoped>
 #detailWrapper {
   max-width: 500px;
 }
