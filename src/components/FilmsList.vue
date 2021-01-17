@@ -1,9 +1,7 @@
 <template lang="html">
     <div>
         <ul>
-            <li>
-                <list-component v-for="film in films"></list-component>
-            </li>
+            <list-component v-for="(film, index) in films" :film="film" :key="index">{{ film.title }}</list-component>
         </ul>
     </div>
   

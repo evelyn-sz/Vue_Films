@@ -9,7 +9,7 @@
 
 <script>
 
-import FilmsList from './components/FilmsList.vue'
+import FilmsList from './components/FilmsList.vue';
 
 export default {
   data() {
@@ -28,6 +28,6 @@ export default {
 }
 </script>
 
-<style>
+<style lang="css" scoped>
 
 </style>
